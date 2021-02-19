@@ -8,7 +8,7 @@
 使用本项目Release和Dockerfile构建，根据`自制Docker Openwrt镜像及运行镜像.txt`
 
 ## Armbian访问容器
-需要修改Armbian的网络文件/etc/network/interfaces.d/eth0为以下内容。其中IP和网关等根据自己使用修改
+需要修改Armbian的文件 /etc/network/interfaces.d/eth0 为以下内容。其中IP和网关等根据自己使用修改
 ~~~
 auto eth0
 iface eth0 inet manual
