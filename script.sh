@@ -11,7 +11,7 @@ rm -rf package-temp
 # Add luci-app-adguardhome
 echo "clone adguard home"
 git clone https://github.com/rufengsuixing/luci-app-adguardhome.git package-temp
-mv -f package-temp/luci-app-adguardhome package/lean/
+mv -f package-temp/luci-app-adguardhome package/lean/luci-app-adguardhome
 rm -rf package-temp
 # Add luci-theme-opentomcat
 git clone https://github.com/Leo-Jo-My/luci-theme-opentomcat.git theme-temp/luci-theme-opentomcat
