@@ -241,25 +241,17 @@ CONFIG_PACKAGE_kmod-tun=y
 # CONFIG_PACKAGE_shadowsocksr-libev-ssr-local is not set
 # CONFIG_PACKAGE_simple-obfs is not set
 # CONFIG_PACKAGE_tcping is not set
-CONFIG_PACKAGE_xray-core=y
-CONFIG_PACKAGE_lua-maxminddb=y
-CONFIG_PACKAGE_luci-app-vssr=y
 CONFIG_PACKAGE_boost=y
 CONFIG_PACKAGE_boost-date_time=y
 CONFIG_PACKAGE_boost-program_options=y
 CONFIG_PACKAGE_boost-system=y
 CONFIG_PACKAGE_ipt2socks=y
-CONFIG_PACKAGE_libmaxminddb=y
 CONFIG_PACKAGE_luasocket=y
-CONFIG_PACKAGE_trojan=y
-CONFIG_PACKAGE_v2ray-plugin=y
 CONFIG_boost-compile-visibility-hidden=y
 CONFIG_boost-runtime-shared=y
 CONFIG_boost-static-and-shared-libs=y
 CONFIG_boost-variant-release=y
 CONFIG_PACKAGE_cgroupfs-mount=y
-#CONFIG_PACKAGE_containerd=y
-#CONFIG_PACKAGE_docker-ce=y
 CONFIG_PACKAGE_kmod-br-netfilter=y
 CONFIG_PACKAGE_kmod-dax=y
 CONFIG_PACKAGE_kmod-dm=y
@@ -277,7 +269,20 @@ CONFIG_PACKAGE_libmount=y
 CONFIG_PACKAGE_libnetwork=y
 #CONFIG_PACKAGE_luci-app-docker=y
 #CONFIG_PACKAGE_luci-i18n-docker-zh-cn=y
+#CONFIG_PACKAGE_containerd=y
+#CONFIG_PACKAGE_docker-ce=
 CONFIG_PACKAGE_mount-utils=y
 CONFIG_PACKAGE_runc=y
 CONFIG_PACKAGE_tini=y
+CONFIG_DEFAULT_luci-app-cpufreq=y
+CONFIG_PACKAGE_luci-app-flowoffload=y
+CONFIG_PACKAGE_luci-app-firewall=y
+CONFIG_PACKAGE_luci-proto-ipv6=y
+CONFIG_PACKAGE_luci-proto-ppp=y
+CONFIG_PACKAGE_UnblockNeteaseMusic=n
+CONFIG_PACKAGE_UnblockNeteaseMusicGo=n
+CONFIG_UnblockNeteaseMusicGo_INCLUDE_GOPROXY=n
+CONFIG_PACKAGE_ipv6helper=y
+CONFIG_PACKAGE_luci-proto-ipv6=y
+CONFIG_PACKAGE_luci-proto-ppp=y
 EOF
