@@ -1,0 +1,63 @@
+1.编译openwrt
+    Target System 选择 QEMU ARM VIrtual Machine
+    Subtarget 选择 ARMv8 multiplatform
+    其它的随意
+
+2. 编译好的openwrt，会生成 rootfs 打包文件：
+openwrt-armvirt-64-default-rootfs.tar.gz
+
+3. 在装好armbian和docker的N1上，把openwrt-armvirt-64-default-rootfs.tar.gz和Dockerfile放到同一个目录下
+   
+4. 制造镜像
+(示例用的是openwrt by lean r9.7.6源码，因此镜像名称为：openwrt-arm64 版本为 r9.7.6
+docker build -t openwrt-arm64:r9.7.6  .
+即可生成镜像
+用docker images，可以查看到已生成的镜像
+用docker save openwrt-arm64:r9.7.6 | gzip > docker-image-openwrt-arm64-r9.7.6.tar.gz 可以把镜像导出成打包文件
+用 gzip -dc docker-image-openwrt-arm64-r9.7.6.tar.gz | docker load ，可以把打包文件还原成docker镜像
+
+5. 运行镜像：
+可以参见 https://www.jianshu.com/p/e62190cfff1a?tdsourcetag=s_pcqq_aiomsg
+重点： 
+a. 物理网卡要开启混杂模式（promisc)，有临时生效型（命令）和永久生效型（要改网络配置文件）
+b. docker创建macvlan网络
+c. 用macvlan网络绑定docker容器
+d. 物理机和openwrt容器在同一网段，但不同ip
+e. macvlan模式下，物理机和openwrt容器之间是ping不通的，这是正常现象，但第三方电脑都能ping通两者
+
+示例：
+# docker创建macvlan网络，名为macnet
+docker network create -d macvlan --subnet=192.168.3.0/24 --gateway=192.168.3.1 -o parent=eth0 macnet
+# 用macnet运行openwrt实例，实例名为phicomm-n1
+
+# 引用armbian的通用函数包
+source /usr/lib/armbian/armbian-common
+# 得到一个随机MAC地址,存入MACADDR变量
+get_random_mac
+
+
+
+docker run --name phicomm-n1 --restart always --network macnet --mac-address $MACADDR -d --privileged=true --ulimit nofile=16384:65536  openwrt-arm64:r9.8.17
+# 进入op容器，修改/etc/config/network
+docker exec -it phicomm-n1 sh
+vi /etc/config/network
+
+修改下面这段：
+config interface 'lan'
+        option ifname 'eth0'
+        option proto 'static'
+        option netmask '255.255.255.0'
+        option gateway '192.168.3.1'
+        option ipaddr '192.168.3.20'
+        option broadcast '192.168.3.255'
+        option ip6assign '64'
+        option dns '192.168.3.1'
+
+注：192.168.3.1是主路由的地址
+       192.168.3.20是openwrt自己的地址，也就是旁路由的地址
+        broadcast和dns也做相应更改
+
+改好后，存盘，运行：
+/etc/init.d/network restart
+过一会就可以ping通旁路由了，然后用浏览器连上192.168.3.20就可以按一般的操作了
+     
