@@ -15,7 +15,7 @@ config interface 'lan'
 	option netmask '255.255.255.0'
 	option ip6assign '60'
 	option gateway '10.0.0.1'
-	option broadcast '10.0.0.0'
+	option broadcast '10.0.0.255'
 	option ipaddr '10.0.0.12'
 	option dns '10.0.0.1'
 
