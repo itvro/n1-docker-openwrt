@@ -2,7 +2,7 @@
 
 ## 更新日志
 - 20210220 修改主题argon，删除网易云音乐解锁，添加京东签到，ssrp
-- 20210219 删除docker，添加adguardhome，netdata等luci
+- 20210219 删除docker，添加adguardhome，netdata等
 
 
 ## Armbian安装Docker
