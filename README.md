@@ -1,7 +1,7 @@
 # N1 Docker版本(修改于[项目](https://github.com/huangqian8/Cloud-N1-OpenWrt))
 
 ## 更新日志
-- 20210220 修改主题argon，删除网易云音乐解锁，添加京东签到，ssrp
+- 20210220 修改主题argon，删除网易云音乐解锁、Passwall，添加京东签到，ssrp
 - 20210219 删除docker，添加adguardhome，netdata等
 
 
